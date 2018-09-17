@@ -3,6 +3,8 @@ import vamp
 import librosa
 import numpy as np
 
+# db threshold -> stop drum 
+
 def beatRootDetection():
     result = [] 
     JACK_CAPTURE = "/usr/local/bin/jack_capture"
