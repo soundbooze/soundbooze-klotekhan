@@ -14,7 +14,7 @@ drum = rtmidi.MidiOut()
 drum.open_virtual_port("udukBot")
 
 time.sleep(0.2)
-os.system("aconnect 130:0 14:0")
+#os.system("aconnect 130:0 14:0")
 
 '''
 
