@@ -14,11 +14,11 @@ segementino (vamp)
 (libxtract)
 - loudness
 - bark
-
+- mfcc
 - s.centroid
 - s.rolloff
 - s. kurtosis
-- s sharpness
+- s. sharpness
 
 
 =---------------------------------
