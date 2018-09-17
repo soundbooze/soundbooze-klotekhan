@@ -1,0 +1,24 @@
+perf test
+mono vs stereo ?
+rate , ..., 22.5, 44.1 48.0
+with filter ?
+via vamp/direct xtract ?
+normalize(0|1) /?
+----------------------------------
+
+[audio poly]
+[isolated guitar / directUSB - cyclicBuffer]
+
+segementino
+loudness
+
+s.spread
+s.centroid
+s.rolloff
+
+s.
+ kurtosis
+ sharpness
+
+
+=---------------------------------
