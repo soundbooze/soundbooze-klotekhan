@@ -9,16 +9,19 @@ normalize(0|1) /?
 [audio poly]
 [isolated guitar / directUSB - cyclicBuffer]
 
-segementino
-loudness
+segementino (vamp)
 
-s.spread
-s.centroid
-s.rolloff
+(libxtract)
+- loudness
+- bark
+- s.spread/variance
+- s.centroid
+- s. stdev
+- s.rolloff
 
 s.
- kurtosis
- sharpness
+- kurtosis
+- sharpness
 
 
 =---------------------------------
