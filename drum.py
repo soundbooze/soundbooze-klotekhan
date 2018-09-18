@@ -172,16 +172,22 @@ while [ True ]:
         file = open(BEATTXT, "r") 
         ts = float(file.read())
         print (ts)
+
+        ClosedHiHat(ts/2)
+        Kick(ts)
     except:
         pass
 
     # metal
+    '''
     Kick(ts/4)
     Kick(ts/4)
     Kick(ts/4)
     Kick(ts/4)
 
+
     Snare(ts)
     BeatVariation(random.randint(0, 5))
+    '''
 
 del drum
