@@ -35,6 +35,8 @@ def ParseMIDI(filename):
 
     return notes
 
+dataset = ['a.mid', 'b.mid', 'c.mid']
+
 while [ True ]:
 
     ts = 0
@@ -46,8 +48,9 @@ while [ True ]:
     except:
         pass
 
-    notes = ParseMIDI("c.mid")
-    velocity = random.randint(103, 105)
+    idd = random.randint(0, 2)
+    notes = ParseMIDI(dataset[idd])
+    velocity = random.randint(123, 127)
 
     for i, note in enumerate(notes):
         note_on = [0x99, note, velocity]
