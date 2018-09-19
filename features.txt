@@ -22,3 +22,5 @@ segementino (vamp)
 
 
 =---------------------------------
+
+[bass, drum]: bark, beatroot, bass-chroma
