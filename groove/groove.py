@@ -10,6 +10,8 @@ import threading
 from scipy import signal
 from scipy.signal import find_peaks
 
+from sklearn.preprocessing import MinMaxScaler
+
 import matplotlib.pyplot as plt
 
 # fixed-pattern dataZ
@@ -139,11 +141,16 @@ def barkplot (k, s, K, S, bsum):
     plt.subplot(322)
     plt.plot(s)
 
+    Kscaled = MinMaxScaler(feature_range=(-1, 1)).fit_transform(np.array(K).reshape(-1,1))
+    Sscaled = MinMaxScaler(feature_range=(-1, 1)).fit_transform(np.array(S).reshape(-1,1))
+
     plt.subplot(323)
-    plt.plot(signal.resample(K, 20))
+    #plt.plot(signal.resample(K, 20))
+    plt.plot(np.heaviside(Kscaled, 0.5))
 
     plt.subplot(324)
-    plt.plot(signal.resample(S, 20))
+    #plt.plot(signal.resample(S, 20))
+    plt.plot(np.heaviside(Sscaled, 0.5))
 
     plt.subplot(325)
     plt.plot(signal.resample(bsum, 20))
