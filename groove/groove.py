@@ -7,6 +7,7 @@ import time
 import rtmidi
 import random
 import threading
+from scipy import signal
 from scipy.signal import find_peaks
 
 import matplotlib.pyplot as plt
@@ -45,7 +46,7 @@ def hihatThread(m, t):
 
 def GrooveBot(itv, ms):
 
-    os.system('paplay --volume 57444 ' + sys.argv[1] + '&')
+    os.system('paplay --volume 53444 ' + sys.argv[1] + '&')
 
     for z in range(len(itv)):
 
@@ -139,17 +140,18 @@ def barkplot (k, s, K, S, bsum):
     plt.plot(s)
 
     plt.subplot(323)
-    plt.plot(K)
+    plt.plot(signal.resample(K, 20))
 
     plt.subplot(324)
-    plt.plot(S)
+    plt.plot(signal.resample(S, 20))
 
     plt.subplot(325)
-    plt.plot(bsum)
+    plt.plot(signal.resample(bsum, 20))
 
     plt.subplot(326)
     b = np.array(bsum)
-    plt.plot(b[b > np.mean(b)])
+    th = b[b > np.mean(b)]
+    plt.plot(signal.resample(th, 20))
 
     plt.show()
 
