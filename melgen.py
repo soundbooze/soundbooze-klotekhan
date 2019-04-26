@@ -8,24 +8,23 @@ pitch = ["G#", "G", "F#", "F", "E", "D#", "D", "C#", "C", "B", "A#", "A"]
 
 def percvalley (guitar):
 
-    filename = "/tmp/beatroot.csv"
+    filename = "/tmp/percvalley.csv"
     run = "sonic-annotator -d vamp:libvamp_essentia:perculleys:perculleys " + guitar + " -w csv --csv-stdout --csv-omit-filename > /dev/null 2>&1 > " + filename
     os.system(run)
     data = pd.read_csv(filename)
     M = data.to_numpy()
-    '''
-    r,c = M.shape
-    ts = M[:,0]
 
-    itv = []
-    for t in range(len(ts)-1):
-        itv.append(ts[t+1] - ts[t])
+    return M
 
-    os.unlink(filename)
+def yinf0 (guitar):
 
-    return ts, itv
-    '''
-    print (M)
+    filename = "/tmp/yinf0.csv"
+    run = "sonic-annotator -d vamp:pyin:yin:f0 " + guitar + " -w csv --csv-stdout --csv-omit-filename > /dev/null 2>&1 > " + filename
+    os.system(run)
+    data = pd.read_csv(filename)
+    M = data.to_numpy()
+
+    return M
 
 def beatroot (guitar):
 
@@ -104,6 +103,12 @@ lengthBass(B)
 '''
 
 #P = percvalley(sys.argv[1])
+
+yf = yinf0(sys.argv[1])
+
+for y in yf:
+    print (y[0], y[1])
+
 
 '''
 plt.imshow(B, interpolation='nearest')
