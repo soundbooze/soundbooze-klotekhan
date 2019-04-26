@@ -6,6 +6,27 @@ import pandas as pd
 
 pitch = ["G#", "G", "F#", "F", "E", "D#", "D", "C#", "C", "B", "A#", "A"]
 
+def percvalley (guitar):
+
+    filename = "/tmp/beatroot.csv"
+    run = "sonic-annotator -d vamp:libvamp_essentia:perculleys:perculleys " + guitar + " -w csv --csv-stdout --csv-omit-filename > /dev/null 2>&1 > " + filename
+    os.system(run)
+    data = pd.read_csv(filename)
+    M = data.to_numpy()
+    '''
+    r,c = M.shape
+    ts = M[:,0]
+
+    itv = []
+    for t in range(len(ts)-1):
+        itv.append(ts[t+1] - ts[t])
+
+    os.unlink(filename)
+
+    return ts, itv
+    '''
+    print (M)
+
 def beatroot (guitar):
 
     filename = "/tmp/beatroot.csv"
@@ -76,9 +97,13 @@ def lengthBass(B):
 C = simplechord(sys.argv[1])
 ts, itv = beatroot(sys.argv[1])
 
+'''
 ts, B, bsum = basschroma(sys.argv[1])
 
 lengthBass(B)
+'''
+
+#P = percvalley(sys.argv[1])
 
 '''
 plt.imshow(B, interpolation='nearest')
