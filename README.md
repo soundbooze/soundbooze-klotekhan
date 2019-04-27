@@ -1,7 +1,7 @@
 # soundbooze-klotekhan
 Naive Blind Drum Generator [Realtime]
 
-TODO:
+msh banyak TODO, yg harus dikerjakhan:
 
 - realtime interaction [event, sensor...]
 
