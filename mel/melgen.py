@@ -16,6 +16,16 @@ def percvalley (guitar):
 
     return M
 
+def maxmagfreq (guitar):
+
+    filename = "/tmp/maxmagfreq.csv"
+    run = "sonic-annotator -d vamp:libvamp_essentia:essentia_MaxMagFreq:essentia_MaxMagFreq " + guitar + " -w csv --csv-stdout --csv-omit-filename > /dev/null 2>&1 > " + filename
+    os.system(run)
+    data = pd.read_csv(filename)
+    M = data.to_numpy()
+
+    return M
+
 def yinf0 (guitar):
 
     filename = "/tmp/yinf0.csv"
@@ -104,11 +114,16 @@ lengthBass(B)
 
 #P = percvalley(sys.argv[1])
 
+'''
 yf = yinf0(sys.argv[1])
 
 for y in yf:
     print (y[0], y[1])
+'''
 
+M = maxmagfreq(sys.argv[1])
+plt.plot(M)
+plt.show()
 
 '''
 plt.imshow(B, interpolation='nearest')
