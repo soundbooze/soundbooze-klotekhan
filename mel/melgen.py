@@ -14,6 +14,8 @@ def percvalley (guitar):
     data = pd.read_csv(filename)
     M = data.to_numpy()
 
+    os.unlink(filename)
+
     return M
 
 def maxmagfreq (guitar):
@@ -24,6 +26,20 @@ def maxmagfreq (guitar):
     data = pd.read_csv(filename)
     M = data.to_numpy()
 
+    os.unlink(filename)
+
+    return M
+
+def harmonicspectrum (guitar):
+
+    filename = "/tmp/harmonicspectrum.csv"
+    run = "sonic-annotator -d vamp:vamp-libxtract:harmonic_spectrum:amplitudes " + guitar + " -w csv --csv-stdout --csv-omit-filename > /dev/null 2>&1 > " + filename
+    os.system(run)
+    data = pd.read_csv(filename)
+    M = data.to_numpy()
+
+    os.unlink(filename)
+
     return M
 
 def yinf0 (guitar):
@@ -33,6 +49,8 @@ def yinf0 (guitar):
     os.system(run)
     data = pd.read_csv(filename)
     M = data.to_numpy()
+
+    os.unlink(filename)
 
     return M
 
@@ -62,6 +80,7 @@ def basschroma (guitar):
     data = pd.read_csv(filename)
     M = data.to_numpy()
     ts = M[:,0]
+
     os.unlink(filename)
 
     T = np.transpose(M)
@@ -77,6 +96,7 @@ def simplechord (guitar):
     os.system(run)
     data = pd.read_csv(filename)
     M = data.to_numpy()
+
     os.unlink(filename)
 
     return M
@@ -121,8 +141,8 @@ for y in yf:
     print (y[0], y[1])
 '''
 
-M = maxmagfreq(sys.argv[1])
-plt.plot(M)
+M = harmonicspectrum(sys.argv[1])
+plt.imshow(M)
 plt.show()
 
 '''
